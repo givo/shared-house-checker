@@ -110,9 +110,12 @@ class MinimalEntranceDetector:
         processed_image = self.preprocess_image(image)
 
         # Step 2: Extract apartment by color (fuzzy match)
-        target_color = (191, 126, 255)  # Example apartment color
+        purple = (191, 126, 255)
+        brown = (221, 166, 110)
+        green = (0, 150, 0)
+        target_color = green
         cropped, mask = self.extract_apartment_by_color_fuzzy(
-            processed_image, target_color, tolerance=12, padding=20
+            processed_image, target_color, tolerance=30, padding=20
         )
 
         # Create fake mask data structure to visualize
@@ -134,8 +137,8 @@ class MinimalEntranceDetector:
 if __name__ == "__main__":
     detector = MinimalEntranceDetector()
 
-    # Replace with your image path
-    image_path = os.path.join(os.path.dirname(__file__), "data", "part_of_floor_0.png")
+    image_path = os.path.join(os.path.dirname(__file__), "data", "floor1.jpg")
+    # image_path = os.path.join(os.path.dirname(__file__), "data", "part_of_floor_0.png")
 
     try:
         results, debug_info = detector.detect_apartment_entrances(image_path)
