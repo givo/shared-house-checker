@@ -9,8 +9,6 @@ logging.basicConfig(
 
 
 if __name__ == "__main__":
-    logging.info("This is a test log message.")
-
     pre_processor = PreProcessor()
 
     # image_path = os.path.join(os.path.dirname(__file__), "data", "floor1.jpg")
