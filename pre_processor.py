@@ -1,6 +1,8 @@
 import os
 import logging
+import time
 from image_straightener import Desker
+from image_utils import show_image_cv
 from pdf_to_image import load_pdf_pages
 
 
@@ -18,5 +20,4 @@ class PreProcessor:
 
             straight_image = self.deskewer.deskew(pages[i])
 
-            straight_image.show()
-            input("Press Enter to continue...")
+            show_image_cv(straight_image)

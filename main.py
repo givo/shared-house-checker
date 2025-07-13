@@ -13,7 +13,10 @@ if __name__ == "__main__":
 
     # image_path = os.path.join(os.path.dirname(__file__), "data", "floor1.jpg")
     image_path = os.path.join(
-        os.path.dirname(__file__), "data", "sketches", "raanana_shvil_hazahav_6.pdf"
+        os.path.dirname(__file__),
+        "data",
+        "sketches",
+        "herzelia_hachalil_2_3_4_5_6_7_8.pdf",
     )
 
     pre_processor.preprocess(image_path)
