@@ -1,26 +1,21 @@
 import os
+import logging
 from image_straightener import straighten_image
 from pdf_to_image import load_pdf_pages
 
 
 class PreProcessor:
     def __init__(self):
-        os.environ["TESSDATA_PREFIX"] = "/opt/homebrew/share/tessdata"
+        pass
 
     def preprocess(self, pdf_path: str):
-        images = load_pdf_pages(pdf_path)
-        straight_image = straighten_image(images[0])
+        logging.info("loading pdf file")
+        pages = load_pdf_pages(pdf_path)
 
-        straight_image.show()
-        input("Press Enter to continue...")
+        for i in range(len(pages)):
+            logging.info(f"processing image {i}")
 
+            straight_image = straighten_image(pages[i])
 
-if __name__ == "__main__":
-    pre_processor = PreProcessor()
-
-    # image_path = os.path.join(os.path.dirname(__file__), "data", "floor1.jpg")
-    image_path = os.path.join(
-        os.path.dirname(__file__), "data", "sketches", "or_akiva_mor_11.pdf"
-    )
-
-    pre_processor.preprocess(image_path)
+            straight_image.show()
+            input("Press Enter to continue...")

@@ -1,12 +1,16 @@
 import re
+import os
+import logging
 from typing import Tuple, List
 import numpy as np
 import cv2
 from PIL import Image
 import pytesseract
 
+
 Image.MAX_IMAGE_PIXELS = None
 HEBREW_CHAR_RE = re.compile(r"[\u0590-\u05FF]")
+os.environ["TESSDATA_PREFIX"] = "/opt/homebrew/share/tessdata"
 
 
 def pil_to_cv2(pil_image: Image.Image) -> np.ndarray:
@@ -90,11 +94,18 @@ def score_rotation(crop: np.ndarray) -> float:
 def auto_orient_image(image: np.ndarray) -> Tuple[np.ndarray, int]:
     # Extract once for speed
     ocr_crop = extract_ocr_region(image)
+
     best_angle = 0
     best_score = 0.0
 
     for angle in [0, 90, 180, 270]:
         rotated_crop = rotate_image(ocr_crop, angle)
+
+        logging.info(f"Scoring rotation {angle} degrees")
+        cv2.imshow("OCR Crop", rotated_crop)
+        cv2.waitKey(5000)
+        cv2.destroyAllWindows()
+
         score = score_rotation(rotated_crop)
         if score > best_score:
             best_score = score
@@ -107,5 +118,5 @@ def auto_orient_image(image: np.ndarray) -> Tuple[np.ndarray, int]:
 def straighten_image(pil_image: Image.Image) -> Image.Image:
     cv_image = pil_to_cv2(pil_image)
     corrected_cv_image, angle = auto_orient_image(cv_image)
-    print(f"Rotated by {angle} degrees")
+    logging.info(f"Rotated by {angle} degrees")
     return cv2_to_pil(corrected_cv_image)
