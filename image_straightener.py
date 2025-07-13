@@ -16,7 +16,7 @@ os.environ["TESSDATA_PREFIX"] = "/opt/homebrew/share/tessdata"
 class Desker:
     HEBREW_CHAR_RE = re.compile(r"[\u0590-\u05FF]")
 
-    def extract_ocr_region(self, image: np.ndarray, max_dim: int = 2048) -> np.ndarray:
+    def extract_ocr_region(self, image: np.ndarray, max_dim: int = 3072) -> np.ndarray:
         h, w = image.shape[:2]
         aspect_ratio = abs(h / w)
         if h > w:
@@ -52,14 +52,32 @@ class Desker:
         return len(hebrew_letters) >= 2
 
     def score_rotation(self, crop: np.ndarray) -> float:
-        data = pytesseract.image_to_data(
-            crop, lang="heb+eng", output_type=pytesseract.Output.DICT
-        )
-        confidences = [
-            int(conf)
-            for text, conf in zip(data["text"], data["conf"])
-            if int(conf) > 0 and self.is_valid_hebrew_word(text)
-        ]
+        def preprocess_for_ocr(image: np.ndarray) -> np.ndarray:
+            gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+            blur = cv2.GaussianBlur(gray, (3, 3), 0)
+            _, binary = cv2.threshold(blur, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+            return cv2.cvtColor(binary, cv2.COLOR_GRAY2BGR)
+
+        crop = preprocess_for_ocr(crop)
+
+        try:
+            data = pytesseract.image_to_data(
+                crop, lang="heb", config="--psm 6", output_type=pytesseract.Output.DICT
+            )
+        except Exception as e:
+            logging.warning(f"OCR failed: {e}")
+            return 0.0
+
+        confidences = []
+        for text, conf in zip(data["text"], data["conf"]):
+            try:
+                conf = int(conf)
+            except ValueError:
+                continue
+
+            if conf > 0 and self.is_valid_hebrew_word(text):
+                confidences.append(conf)
+
         if not confidences:
             return 0.0
 

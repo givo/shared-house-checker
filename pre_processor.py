@@ -16,7 +16,7 @@ class PreProcessor:
         logging.info("pdf file loaded successfully")
 
         for i in range(len(pages)):
-            logging.info(f"processing image {i}")
+            logging.info(f"processing page {i}")
 
             straight_image = self.deskewer.deskew(pages[i])
 
