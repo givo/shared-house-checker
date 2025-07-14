@@ -27,11 +27,14 @@ class Desker:
             crop_w = int(w * aspect_ratio)
             x_start = int((w - crop_w) // 2)
             crop = image[:, x_start : x_start + crop_w]
+
+        # ! downscale if larger than max_dim - reduces quality
         ch, cw = crop.shape[:2]
         scale = min(max_dim / ch, max_dim / cw, 1.0)
         if scale < 1.0:
             new_size = (int(cw * scale), int(ch * scale))
             crop = cv2.resize(crop, new_size, interpolation=cv2.INTER_AREA)
+
         return crop
 
     def rotate_image(self, image: np.ndarray, angle: int) -> np.ndarray:
