@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  label-studio:
+    image: heartexlabs/label-studio:latest
+    container_name: label-studio
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./label-studio-data:/label-studio/data
+      - ./data/labeling:/label-studio/media   # mount your image dataset here
+    environment:
+      LABEL_STUDIO_LOCAL_FILES_SERVING_ENABLED: "true"
+      LABEL_STUDIO_LOCAL_FILES_DOCUMENT_ROOT: "/label-studio/media"

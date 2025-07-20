@@ -1,0 +1,17 @@
+{
+  "name": "shared-house-checker",
+  "version": "0.0.0",
+  "description": "1. pip install -r requirements 2. brew install tesseract-lang",
+  "main": "",
+  "scripts": {
+    "label-studio:start": "docker-compose up -d label-studio",
+    "label-studio:convert-yolo:test.v1i": "label-studio-converter import yolo -i ./data/labeling/raw/test.v1i.yolov11/train -o ./data/labeling/processed/test.v1i/tasks.json --image-root-url \"/data/local-files/?d=raw/test.v1i.yolov11/train/images\"",
+    "label-studio:convert-yolo:floor_detection.v1i": "label-studio-converter import yolo -i ./data/labeling/raw/floor_detection.v1i.yolov11/train -o ./data/labeling/processed/floor_detection.v1i/tasks.json --image-root-url \"/data/local-files/?d=raw/floor_detection.v1i.yolov11/train/images\"",
+    "label-studio:convert-yolo:cad_drawings.v2i": "label-studio-converter import yolo -i ./data/labeling/raw/cad_drawings.v2i.yolov11/train -o ./data/labeling/processed/cad_drawings.v2i/tasks.json --image-root-url \"/data/local-files/?d=raw/cad_drawings.v2i.yolov11/train/images\"",
+    "label-studio:convert-yolo:capstome_6.v5i": "label-studio-converter import yolo -i ./data/labeling/raw/capstome_6.v5i.yolov11/train -o ./data/labeling/processed/capstome_6.v5i/tasks.json --image-root-url \"/data/local-files/?d=raw/capstome_6.v5i.yolov11/train/images\"",
+    "label-studio:convert-yolo:cubicasa5k-2.v6i": "label-studio-converter import yolo -i ./data/labeling/raw/cubicasa5k-2.v6i.yolov11/train -o ./data/labeling/processed/cubicasa5k-2.v6i/tasks.json --image-root-url \"/data/local-files/?d=raw/cubicasa5k-2.v6i.yolov11/train/images\"",
+    "label-studio:convert-yolo:door-detection-model.v7i": "label-studio-converter import yolo -i ./data/labeling/raw/door-detection-model.v7i.yolov11/train -o ./data/labeling/processed/door-detection-model.v7i/tasks.json --image-root-url \"/data/local-files/?d=raw/door-detection-model.v7i.yolov11/train/images\""
+  },
+  "author": "Matan Givoni",
+  "license": "ISC"
+}

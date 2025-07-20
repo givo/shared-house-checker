@@ -1,0 +1,47 @@
+<View>
+  <Image name="image" value="$image"/>
+
+  <Header value="RectangleLabels"/>
+  <RectangleLabels name="label" toName="image">
+    <Label value="0 - wall" background="rgba(218, 1, 238, 1)"/>
+    <Label value="1 - pillar" background="rgba(0, 255, 0, 1)"/>
+    <Label value="1 - window - window" background="rgba(1, 146, 243, 1)"/>
+    <Label value="2 - stairs" background="rgba(241, 135, 0, 1)"/>
+    <Label value="2 - door - door" background="rgba(12, 0, 184, 1)"/>
+    <Label value="2_junc_corner - IGNORE" background="rgba(72, 124, 73, 1)"/>
+    <Label value="3 - door" background="rgba(187, 1, 37, 1)"/>
+    <Label value="3 - table - IGNORE" background="rgba(166, 250, 86, 1)"/>
+    <Label value="3_junc_corner - IGNORE" background="rgba(178, 135, 216, 1)"/>
+    <Label value="4 - window" background="rgba(0, 252, 159, 1)"/>
+    <Label value="4 - sink - IGNORE" background="rgba(116, 239, 254, 1)"/>
+    <Label value="4_junc_corner - IGNORE" background="rgba(252, 65, 124, 1)"/>
+    <Label value="5 - room" background="rgba(99, 56, 252, 1)"/>
+    <Label value="5 - couch - IGNORE" background="rgba(252, 183, 127, 1)"/>
+    <Label value="6 - bed - IGNORE" background="rgba(115, 41, 127, 1)"/>
+    <Label value="7 - toilet - IGNORE" background="rgba(255, 255, 0, 1)"/>
+    <Label value="8 - tub - IGNORE" background="rgba(137, 176, 1, 1)"/>
+    <Label value="Column - IGNORE" background="rgba(95, 192, 153, 1)"/>
+    <Label value="Door - IGNORE" background="rgba(1, 53, 87, 1)"/>
+    <Label value="Garage Door - IGNORE" background="rgba(148, 86, 0, 1)"/>
+    <Label value="Opening - IGNORE" background="rgba(179, 123, 99, 1)"/>
+    <Label value="Sliding Door - window" background="rgba(5, 168, 6, 1)"/>
+    <Label value="Stairs - stairs" background="rgba(33, 101, 165, 1)"/>
+    <Label value="Ventilator - window" background="rgba(3, 232, 254, 1)"/>
+    <Label value="Window - window" background="rgba(254, 86, 239, 1)"/>
+    <Label value="Zone - room (bbox)" background="rgba(64, 234, 74, 1)"/>
+    <Label value="bathroom - room (bbox)" background="rgba(188, 228, 185, 1)"/>
+    <Label value="boussole - compass" background="rgba(45, 74, 0, 1)"/>
+    <Label value="cooking_plates - IGNORE" background="rgba(2, 170, 123, 1)"/>
+    <Label value="door - door" background="rgba(251, 53, 7, 1)"/>
+    <Label value="ext_wall - IGNORE" background="rgba(250, 176, 247, 1)"/>
+    <Label value="int_wall - IGNORE" background="rgba(176, 61, 197, 1)"/>
+    <Label value="perimeter - IGNORE" background="rgba(127, 255, 0, 1)"/>
+    <Label value="sink - IGNORE" background="rgba(99, 1, 6, 1)"/>
+    <Label value="stair case - stairs" background="rgba(199, 4, 140, 1)"/>
+    <Label value="toilet - IGNORE" background="rgba(0, 71, 252, 1)"/>
+    <Label value="tub - IGNORE" background="rgba(101, 164, 251, 1)"/>
+    <Label value="wall - IGNORE" background="rgba(255, 255, 127, 1)"/>
+    <Label value="window - window" background="rgba(215, 197, 46, 1)"/>
+    <Label value="zone - IGNORE" background="rgba(117, 3, 199, 1)"/>
+  </RectangleLabels>
+</View>

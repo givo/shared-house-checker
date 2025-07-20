@@ -1,7 +1,7 @@
 .history/
-data/
+data/labeling/raw/
 .DS_Store
-
+label-studio-data/
 
 # Byte-compiled / optimized / DLL files
 *.pyc
